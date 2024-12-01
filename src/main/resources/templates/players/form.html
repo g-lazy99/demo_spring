@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Football App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #006400;
+            color: white;
+            padding: 20px;
+        }
+        a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #006400;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #228B22;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Football App</h1>
+    <p>Добро пожаловать в приложение о футболе!</p>
+</header>
+<h1 th:if="${player.id == null}">Добавить игрока</h1>
+<h1 th:if="${player.id != null}">Редактировать игрока</h1>
+<form th:object="${player}" th:action="@{/players}" method="post">
+    <label>ФИО:</label>
+    <input type="text" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" required/>
+    <br/>
+    <label>Позиция:</label>
+    <input type="text" th:if="${#fields.hasErrors('position')}" th:errors="*{position}" required/>
+    <br/>
+    <label>Дата рождения:</label>
+    <input type="date" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}" required/>
+    <br/>
+    <label>Рост:</label>
+    <input type="number" th:if="${#fields.hasErrors('height')}" th:errors="*{height}" required/>
+    <br/>
+    <label>Вес:</label>
+    <input type="number" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}" required/>
+    <br/>
+    <button type="submit">Сохранить</button>
+</form>
+<footer>
+    <p>&copy; 2024 Football App. Все права защищены.</p>
+</footer>
+</body>
+</html>

@@ -1,10 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Football App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #006400;
+      color: white;
+      padding: 20px;
+    }
+    a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: white;
+      background-color: #006400;
+      border-radius: 5px;
+    }
+    a:hover {
+      background-color: #228B22;
+    }
+    footer {
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
-$END$
+<header>
+  <h1>Football App</h1>
+  <p>Добро пожаловать в приложение о футболе!</p>
+</header>
+<h1>Вход в систему</h1>
+<form th:action="@{/login}" method="post">
+  <label>Имя пользователя:</label>
+  <input type="text" name="username" required/><br/>
+  <label>Пароль:</label>
+  <input type="password" name="password" required/><br/>
+  <button type="submit">Войти</button>
+</form>
+<p>Нет аккаунта? <a th:href="@{/register}">Зарегистрируйтесь</a></p>
+<footer>
+  <p>&copy; 2024 Football App. Все права защищены.</p>
+</footer>
 </body>
 </html>

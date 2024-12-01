@@ -1,5 +1,6 @@
 package com.example.demo_spring;
 import static org.hamcrest.Matchers.containsString;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -10,15 +11,15 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 
-@WebMvcTest(HomeController.class)
+@WebMvcTest(FootballController.class)
 public class HomeControllerTest {
     @Autowired
     private MockMvc mockMvc;
     @Test
     public void testHomePage() throws Exception {
-        mockMvc.perform(get("/"))
+        mockMvc.perform(get("/").with(user("testUser").roles("USER")))
                 .andExpect(status().isOk())
                 .andExpect(view().name("home"))
-                .andExpect(content().string(containsString("Welcome to...")));
+                .andExpect(content().string(containsString("Добро пожаловать в приложение о футболе!")));
     }
 }

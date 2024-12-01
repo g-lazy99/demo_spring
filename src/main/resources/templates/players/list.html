@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Football App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #006400;
+            color: white;
+            padding: 20px;
+        }
+        a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #006400;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #228B22;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Football App</h1>
+    <p>Добро пожаловать в приложение о футболе!</p>
+</header>
+<h1>Список игроков</h1>
+<a href="/players/new">Добавить нового игрока</a>
+<div style="text-align: center;">
+<table style="display: inline-block;">
+    <tr>
+        <th>ФИО</th>
+        <th>Позиция</th>
+        <th>Действия</th>
+    </tr>
+    <tr th:each="player : ${players}">
+        <td th:text="${player.fullName}"></td>
+        <td th:text="${player.position}"></td>
+        <td>
+            <a th:href="@{/players/{id}/edit(id=${player.id})}">Редактировать</a>
+            <form th:action="@{/players/{id}/delete(id=${player.id})}" method="post">
+                <button type="submit">Удалить</button>
+            </form>
+        </td>
+    </tr>
+</table>
+</div>
+<footer>
+    <p>&copy; 2024 Football App. Все права защищены.</p>
+</footer>
+</body>
+</html>

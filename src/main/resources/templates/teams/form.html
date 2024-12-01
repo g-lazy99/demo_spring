@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #006400;
+            color: white;
+            padding: 20px;
+        }
+        a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #006400;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #228B22;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Football App</h1>
+    <p>Добро пожаловать в приложение о футболе!</p>
+</header>
+<h1 th:if="${team.id == null}">Добавить команду</h1>
+<h1 th:if="${team.id != null}">Редактировать команду</h1>
+<form th:object="${team}" th:action="@{/teams}" method="post">
+    <label>Название:</label>
+    <input type="text" th:field="*{name}" required/>
+    <br/>
+    <label>Тренер:</label>
+    <input type="text" th:field="*{coach}" required/>
+    <br/>
+    <label>Страна:</label>
+    <input type="text" th:field="*{country}" required/>
+    <br/>
+    <label>Год основания:</label>
+    <input type="number" th:field="*{foundationYear}" required/>
+    <br/>
+    <button type="submit">Сохранить</button>
+</form>
+<footer>
+    <p>&copy; 2024 Football App. Все права защищены.</p>
+</footer>
+</body>
+</html>

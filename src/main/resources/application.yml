@@ -1,2 +1,35 @@
-spring.application.name=demo_spring
-server.port=8081
+spring:
+  application:
+    name: demo_spring
+  datasource:
+    url: jdbc:h2:mem:football
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    generate-unique-name: false
+    name: football
+  h2:
+    console:
+      enabled: true
+  sql:
+    init:
+      mode: always # Выполняет schema.sql и data.sql
+  jpa:
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+  profiles:
+    active: test
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+
+server:
+  port: 8081

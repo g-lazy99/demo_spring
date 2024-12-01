@@ -8,6 +8,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -22,7 +23,7 @@ public class PlayerControllerTest {
 
     @Test
     public void testListPlayers() throws Exception {
-        mockMvc.perform(get("/players"))
+        mockMvc.perform(get("/players").with(user("testUser").roles("USER")))
                 .andExpect(status().isOk())
                 .andExpect(view().name("players/list"))
                 .andExpect(model().attributeExists("players"));

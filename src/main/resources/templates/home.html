@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>Football App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #006400;
+            color: white;
+            padding: 20px;
+        }
+        a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #006400;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #228B22;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Football App</h1>
+    <p>Добро пожаловать в приложение о футболе!</p>
+</header>
+
+<main>
+    <img th:src="@{/images/demospring.png}" alt="Football Logo" style="max-width: 200px; margin: 20px 0;">
+    <div>
+        <a href="/teams">Команды</a>
+        <a href="/players">Игроки</a>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Football App. Все права защищены.</p>
+</footer>
+</body>
+</html>
